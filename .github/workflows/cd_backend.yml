@@ -30,7 +30,7 @@ jobs:
           uses: appleboy/ssh-action@v1.0.3
           with:
              host: ${{secrets.VM_IP}}
-             username: root
+             username: ubuntu
              key: ${{secrets.PRIVATE_KEY}}
              script: |
                 docker pull  ${{ secrets.DOCKERHUB_USERNAME }}/testdeploy:${{github.sha}}

@@ -27,22 +27,4 @@ jobs:
               - DATABASE_URL=${{secrets.DATABASE_URL}}
             push: true
             tags: ${{secrets.DOCKERHUB_USERNAME}}/testdeploy:${{github.sha}}
-   # deploy:
-     #  runs-on: ubuntu-latest
-
-     #  steps:
-      #   - name: checkout
-       #    uses: actions/checkout@v4
-
-        # - name: deploy  on vm
-        #   uses: appleboy/ssh-action@v1.0.3
-        #   with:
-        #     host: ${{secrets.githubAction.ip}}
-        #     root: root
-         #    key: ${{secrets.github_key}}
-        #     script: |
-         #      git pull ${{ secrets.DOCKERHUB_USERNAME }}/image_name:latest
-          #     cd usr/src/app/deploy 
-          #     docker compose up -d
-    
-    
+  
