@@ -14,7 +14,7 @@ RUN pnpm install
 COPY ./apps/web   ./apps/web
 # "dev:generate":"cd packages/db && npx prisma generate && cd ../.."--> added in base package.json
 RUN pnpm run dev:generate
-RUN  cd apps/web && pnpm run build && cd ../..
+RUN DATABASE_URL=${DATABASE_URL} cd apps/web && pnpm run build && cd ../..
 EXPOSE 3000
 # "start:frontend":"cd apps/web && pnpm run start"
 CMD ["pnpm","run","start:frontend"]
