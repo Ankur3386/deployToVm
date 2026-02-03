@@ -22,24 +22,27 @@ jobs:
           uses: docker/build-push-action@v5
           with:
             context: .
-            file: docker/Dockerfile.http
+            file: docker/Dockerfile.fe
+            build-args: 
+              - DATABASE_URL=${{secrets.DATABASE_URL}}
             push: true
             tags: ${{secrets.DOCKERHUB_USERNAME}}/testdeploy:${{github.sha}}
+   # deploy:
+     #  runs-on: ubuntu-latest
 
-        - name: deploy  on vm
-          uses: appleboy/ssh-action@v1.0.3
-          with:
-             host: ${{secrets.VM_IP}}
-             username: root
-             key: ${{secrets.PRIVATE_KEY}}
-             script: |
-                docker pull  ${{ secrets.DOCKERHUB_USERNAME }}/image_name:${{github.sha}}
-                docker stop  user_backend || true
-                docker rm  user_backend || true
-                docker run --name user_backend -d -e DATABASE_URL="${{DATABASE_URL}}" -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/image_name:${{github.sha}}
-            
-            
-            #    cd usr/src/app/deploy 
-            #    docker compose up -d
+     #  steps:
+      #   - name: checkout
+       #    uses: actions/checkout@v4
+
+        # - name: deploy  on vm
+        #   uses: appleboy/ssh-action@v1.0.3
+        #   with:
+        #     host: ${{secrets.githubAction.ip}}
+        #     root: root
+         #    key: ${{secrets.github_key}}
+        #     script: |
+         #      git pull ${{ secrets.DOCKERHUB_USERNAME }}/image_name:latest
+          #     cd usr/src/app/deploy 
+          #     docker compose up -d
     
     
