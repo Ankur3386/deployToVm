@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+**/node_modules
+
+# build outputs
+dist
+**/dist
+.next
+**/.next
+
+# pnpm / turbo cache
+.pnpm-store
+.turbo
+
+# logs
+*.log
+
+# env files
+.env
+.env.*
+
+# OS junk
+.DS_Store
