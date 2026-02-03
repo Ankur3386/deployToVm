@@ -36,7 +36,7 @@ jobs:
                 docker pull  ${{ secrets.DOCKERHUB_USERNAME }}/testdeploy:${{github.sha}}
                 docker stop  user_backend || true
                 docker rm  user_backend || true
-                docker run --name user_backend -d -e DATABASE_URL="${{secrets.DATABASE_URL}}" -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/testdeploy:${{github.sha}}
+                docker run --name user_backend -d -e DATABASE_URL=${{secrets.DATABASE_URL}} -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/testdeploy:${{github.sha}}
             
             
             #    cd usr/src/app/deploy 
